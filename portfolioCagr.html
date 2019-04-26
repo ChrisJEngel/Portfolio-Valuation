@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="./style.css"
+  </head>
+
+  <body>
+
+    <!-- Navigation area -->
+    <div class="navArea">
+      <button class="navButton", onclick="navPortfolioCagr('balTrend')">Balance Trend</button>
+      <button class="navButton", onclick="navPortfolioCagr('portfolioTable')">Portfolio Table</button>
+      <button class="navButton", onclick="navPortfolioCagr('portfolioConfig')">Portfolio Config</button>
+      <button class="navButtonHere">Portfolio CAGR</button>
+      <button class="navButton", onclick="navPortfolioCagr('cagrTrend')">CAGR Trend</button>
+      <button class="navButton", onclick="navPortfolioCagr('holdingProfile')">Holding Profile</button>
+    </div>
+
+    <!-- CAGR Ranking Chart -->
+    <div class="chartArea">
+      <canvas id="portfolioCagr"></canvas>
+    </div>
+
+    <!-- Build and display Portfolio Window -->
+    <script src="portfolioCagr.js"></script>
+
+    <!-- Manage navigation requests -->
+    <script>
+      function navPortfolioCagr(targetWindow){
+        const {ipcRenderer} = require('electron');
+        ipcRenderer.send('navPortfolioCagr', targetWindow);
+      };
+    </script>
+
+  </body>
+</html>

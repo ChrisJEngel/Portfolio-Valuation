@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="./style.css"
+  </head>
+
+  <body>
+
+    <!-- Navigation area -->
+    <div class="navArea">
+      <button class="navButton", onclick="navPortfolioConfig('balTrend')">Balance Trend</button>
+      <button class="navButton", onclick="navPortfolioConfig('portfolioTable')">Portfolio Table</button>
+      <button class="navButtonHere">Portfolio Config</button>
+      <button class="navButton", onclick="navPortfolioConfig('portfolioCagr')">Portfolio CAGR</button>
+      <button class="navButton", onclick="navPortfolioConfig('cagrTrend')">CAGR Trend</button>
+      <button class="navButton", onclick="navPortfolioConfig('holdingProfile')">Holding Profile</button>
+    </div>
+
+    <!-- Pie Chart by Investment Type -->
+    <div class="chartArea">
+      <canvas id="portfolioConfig"></canvas>
+    </div>
+
+    <!-- Build and display Portfolio Window -->
+    <script src="portfolioConfig.js"></script>
+
+    <!-- Manage navigation requests -->
+    <script>
+
+      // Tab selected
+      function navPortfolioConfig(targetWindow){
+        const {ipcRenderer} = require('electron');
+        ipcRenderer.send('navPortfolioConfig', targetWindow);
+      };
+    </script>
+
+  </body>
+</html>

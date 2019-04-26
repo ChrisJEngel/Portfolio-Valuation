@@ -1,0 +1,28 @@
+{
+ "name": "NobleFalls_Super_Performance",
+ "version": "1.0.0",
+ "description": "Analyse Noble Falls Super Investment Portfolio Performance",
+ "main": "main.js",
+ "scripts": {
+  "start": "electron .",
+  "pack": "build --dir",
+  "dist": "build"
+ },
+ "build": {
+  "win": {
+   "target": "NSIS",
+   "icon": "build/NobleFalls.ico"
+  }
+ },
+ "author": "Chris Engel",
+ "license": "ISC",
+ "devDependencies": {
+  "electron": "^3.0.10",
+  "electron-builder": "^20.38.2"
+ },
+ "dependencies": {
+  "chart.js": "^2.7.3",
+  "mysql": "^2.16.0",
+  "randomcolor": "^0.5.3"
+ }
+}

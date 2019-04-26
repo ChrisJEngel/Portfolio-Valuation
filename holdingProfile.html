@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="./style.css"
+  </head>
+
+  <body>
+
+    <!-- Navigation area -->
+    <div class="navArea">
+      <button class="navButton", onclick="navHoldingProfile('balTrend')">Balance Trend</button>
+      <button class="navButton", onclick="navHoldingProfile('portfolioTable')">Portfolio Table</button>
+      <button class="navButton", onclick="navHoldingProfile('portfolioConfig')">Portfolio Config</button>
+      <button class="navButton", onclick="navHoldingProfile('portfolioCagr')">Portfolio CAGR</button>
+      <button class="navButton", onclick="navHoldingProfile('cagrTrend')">CAGR Trend</button>
+      <button class="navButtonHere">Holding Profile</button>
+    </div>
+
+    <!-- Display Rank Chart with Range selection -->
+    <div class="chartArea">
+      <span class="holdingTitle">
+        <h1 style="display:inline;", id="holdingName"></h1>
+        <h1 style="display:inline;", id="holdingCode"></h1>
+        <button class="textButton", onclick="selHolding()">Search for a Holding</button>
+      </span>
+
+      <div id="chart2By2Area">
+        <span class="chartSideBySide">
+          <canvas id="holdingProfile1", width="635", height="400"></canvas>
+        </span>
+        <span class="chartSideBySide">
+          <canvas id="holdingProfile2", width="635", height="400"></canvas>
+        </span>
+        <br>
+        <span class="chartSideBySide">
+          <canvas id="holdingProfile3", width="635", height="400"></canvas>
+        </span>
+        <span class="chartSideBySide">
+          <canvas id="holdingProfile4", width="635", height="400"></canvas>
+        </span>
+      </div>
+
+      <div id="dateRangeArea">
+        <span class="buttonArea">
+          Select Date Range:
+          <button class="textButton", id="finYtd", onclick="setRange('finYtd')">Fin YTD</button> |
+          <button class="textButton", id="calYtd", onclick="setRange('calYtd')">Cal YTD</button> |
+          <button class="textButton", id="10d", onclick="setRange('10d')">10 days</button> |
+          <button class="textButton", id="30d", onclick="setRange('30d')">30 days</button> |
+          <button class="textButton", id="3m", onclick="setRange('3m')">3 mths</button> |
+          <button class="textButton", id="6m", onclick="setRange('6m')">6 mths</button> |
+          <button class="textButton", id="1y", onclick="setRange('1y')">1 year</button> |
+          <button class="textButton", id="All", onclick="setRange('All')">All data</button>
+        </span>
+      </div>
+    </div>
+
+    <!-- Build and display CAGR Trend Chart -->
+    <script src="holdingProfile.js"></script>
+
+    <!-- Manage navigation requests -->
+    <script>
+
+      // Date Range clicked, process Date Range Selection
+      function setRange(rangeSel){
+        const {ipcRenderer} = require('electron');
+        ipcRenderer.send('rangeHoldingProfile', rangeSel + ':' + document.getElementById('holdingCode').innerHTML);
+      };
+
+      // Select Holding clicked
+      function selHolding(){
+        var nodeList = document.querySelectorAll(".textButton");
+        for(var i = 0; i < nodeList.length; i++) {
+          if (nodeList[i].style.backgroundColor == 'lightgrey') {
+            const {ipcRenderer} = require('electron');
+            ipcRenderer.send('selHoldingProfile', nodeList[i].id + ':' + document.getElementById('holdingCode').innerHTML);
+            break;
+          }
+        }
+      };
+
+      // Navigation tab clicked
+      function navHoldingProfile(targetWindow){
+        const {ipcRenderer} = require('electron');
+        ipcRenderer.send('navHoldingProfile', targetWindow);
+      };
+
+    </script>
+   </body>
+</html>

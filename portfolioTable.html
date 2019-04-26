@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="./style.css"
+  </head>
+
+  <body>
+
+    <!-- Navigation area -->
+    <div class="navArea">
+      <button class="navButton", onclick="navPortfolioTable('balTrend')">Balance Trend</button>
+      <button class="navButtonHere">Portfolio Table</button>
+      <button class="navButton", onclick="navPortfolioTable('portfolioConfig')">Portfolio Config</button>
+      <button class="navButton", onclick="navPortfolioTable('portfolioCagr')">Portfolio CAGR</button>
+      <button class="navButton", onclick="navPortfolioTable('cagrTrend')">CAGR Trend</button>
+      <button class="navButton", onclick="navPortfolioTable('holdingProfile')">Holding Profile</button>
+    </div>
+
+    <!-- Portfolio Table -->
+    <div class="portfolioArea">
+      <b>Portfolio Configuration as at</b>
+      <b id="latestSnapshotDate"></b>
+      <table id="portfolioTable">
+        <tr>
+          <th class="textButton", id="hdg0", onclick="setSort(0)">Type&#160;</th>
+          <th class="textButton", id="hdg1", onclick="setSort(1)">Holding&#160;</th>
+          <th class="textButton", id="hdg2", onclick="setSort(2)">Code&#160;</th>
+          <th class="textButton", id="hdg3", onclick="setSort(3)">Market Value&#160;</th>
+          <th class="textButton", id="hdg4", onclick="setSort(4)">Market%&#160;</th>
+          <th class="textButton", id="hdg5", onclick="setSort(5)">Total Income&#160;</th>
+          <th class="textButton", id="hdg6", onclick="setSort(6)">CAGR%&#160;</th>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Build and display Portfolio Window -->
+    <script src="portfolioTable.js"></script>
+
+    <!-- Manage navigation requests -->
+    <script>
+
+      // Tab selected
+      function navPortfolioTable(targetWindow){
+        const {ipcRenderer} = require('electron');
+        ipcRenderer.send('navPortfolioTable', targetWindow);
+      };
+
+      // Sort list selected
+      function setSort(sortSel){
+
+        // Determine whether target sort order is ascending or descending
+        listHdg = document.getElementById("hdg"+sortSel).innerHTML
+        firstChar = listHdg.charAt(0)
+        if (firstChar == '\u25BC') {
+          sortSelOrd = sortSel + 'a'
+        }
+        else if (firstChar == '\u25B2') {
+          sortSelOrd = sortSel + 'd'
+        }
+        else {
+          sortSelOrd = sortSel + 'a'
+        }
+
+        // Send sort selection and order to main process
+        const {ipcRenderer} = require('electron');
+        ipcRenderer.send('sortPortfolioTable', sortSelOrd);
+      };
+    </script>
+
+  </body>
+</html>

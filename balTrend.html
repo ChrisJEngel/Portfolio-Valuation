@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="./style.css"
+  </head>
+
+  <body>
+
+    <!-- Navigation area -->
+    <div class="navArea">
+      <button class="navButtonHere">Balance Trend</button>
+      <button class="navButton", onclick="navBalTrend('portfolioTable')">Portfolio Table</button>
+      <button class="navButton", onclick="navBalTrend('portfolioConfig')">Portfolio Config</button>
+      <button class="navButton", onclick="navBalTrend('portfolioCagr')">Portfolio CAGR</button>
+      <button class="navButton", onclick="navBalTrend('cagrTrend')">CAGR Trend</button>
+      <button class="navButton", onclick="navBalTrend('holdingProfile')">Holding Profile</button>
+    </div>
+
+    <!-- Display Range selection -->
+    <div class="chartArea">
+      <canvas id="balTrend"></canvas>
+
+      <div class="buttonArea">
+        Select Date Range:
+        <button class="textButton", id="finYtd", onclick="setRange('finYtd')">Fin YTD</button> |
+        <button class="textButton", id="calYtd", onclick="setRange('calYtd')">Cal YTD</button> |
+        <button class="textButton", id="10d", onclick="setRange('10d')">10 days</button> |
+        <button class="textButton", id="30d", onclick="setRange('30d')">30 days</button> |
+        <button class="textButton", id="3m", onclick="setRange('3m')">3 mths</button> |
+        <button class="textButton", id="6m", onclick="setRange('6m')">6 mths</button> |
+        <button class="textButton", id="1y", onclick="setRange('1y')">1 year</button> |
+        <button class="textButton", id="All", onclick="setRange('All')">All data</button>
+      </div>
+    </div>
+
+    <!-- Display Information Area -->
+    <div class="infoArea">
+      <p><b>Portfolio Key Performance Information</b></p>
+      <div class="infoBlockArea">
+        <table class="infoBlocks">
+          <tr>
+            <th class="lAlign">Balance information</th>
+            <th></th>
+          </tr>
+          <tr>
+            <td class="lAlign">Starting balance</td>
+            <td class="rAlign", id="startBal"></td>
+          </tr>
+          <tr>
+            <td class="lAlign">Ending balance</td>
+            <td class="rAlign", id="endBal"></td>
+          </tr>
+          <tr>
+            <td class="lAlign">Change in balance</td>
+            <td class="rAlign", id="chgBal"></td>
+          </tr>
+          <tr>
+            <td class="lAlign">Change in balance %</td>
+            <td class="rAlign", id="chgBalPerCent"></td>
+          </tr>
+        </table>
+
+        <table class=infoBlocks>
+          <tr>
+            <th class="lAlign">Pension coverage</th>
+            <th></th>
+          </tr>
+          <tr>
+            <td class="lAlign">Pension payments</td>
+            <td class="rAlign", id="pensionPay"></td>
+          </tr>
+          <tr>
+            <td class="lAlign">Change in balance ex pension</td>
+            <td class="rAlign", id="chgBalExPension"></td>
+          </tr>
+          <tr>
+            <td class="lAlign">Pension coverage %</td>
+            <td class="rAlign", id="covPension"></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- Build and display Balance Trend Chart -->
+    <script src="balTrend.js"></script>
+
+    <!-- Manage navigation requests -->
+    <script>
+      // Date Range clicked, process Date Range Selection
+      function setRange(rangeSel){
+        const {ipcRenderer} = require('electron');
+        ipcRenderer.send('rangeBalTrend', rangeSel);
+      };
+
+      // Navigation tab clicked
+      function navBalTrend(targetWindow){
+        const {ipcRenderer} = require('electron');
+        ipcRenderer.send('navBalTrend', targetWindow);
+      };
+    </script>
+
+   </body>
+</html>

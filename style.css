@@ -1,0 +1,198 @@
+* {
+  box-sizing:border-box;
+}
+
+body {
+  color:black;
+  background-color:white;
+  font-family:helvetica;
+  font-size:14px;
+}
+
+h1 {
+  color:#CD5C5C;
+  text-align:center;
+  font-size:14px;
+  padding-top:10px;
+  padding-bottom:10px;
+  margin-top:0;
+  margin-bottom:0;
+}
+
+.rAlign{
+  text-align:right;
+}
+
+.lAlign{
+  text-align:left;
+}
+
+.chartArea {
+  text-align:center;
+  color:grey;
+  font-size:12px;
+  border:1px solid LightGrey;
+  padding:0;
+  margin-top:0;
+  margin-bottom:10px;
+}
+
+.chartSideBySide {
+  display: inline-block;
+  width: 635;
+  height: 400;
+  text-align:center;
+  color:grey;
+  font-size:12px;
+  border:1px solid LightGrey;
+  padding:0;
+  margin:5px;
+}
+
+.infoArea {
+  text-align:center;
+  font-size:14px;
+  color:#CD5C5C;
+  border:1px solid LightGrey;
+}
+
+.infoBlockArea {
+  display:flex;
+  justify-content:center;
+}
+
+.infoBlocks {
+  color:grey;
+  background-color:LightBlue;
+  border:none;
+  padding:10px;
+  margin-left:10px;
+  margin-right:10px;
+  margin-bottom:10px;
+  display:inline-flex;
+}
+
+.portfolioArea {
+  padding-top:10px;
+  margin-bottom:10px;
+  text-align:center;
+  font-size:14px;
+  color:#CD5C5C;
+  border:1px solid LightGrey;
+}
+
+#portfolioTable {
+  margin-left:auto;
+  margin-right:auto;
+  margin-top:10px;
+  margin-bottom:10px;
+  border-collapse:collapse;
+  color:grey;
+}
+
+#portfolioTable td {
+  border:1px solid black;
+  padding:3px;
+}
+
+.portfolioCell:hover {
+  color:Green;
+  cursor:pointer;
+  text-decoration:underline;
+}
+
+#portfolioTable tr:last-child {
+  background-color:LightBlue;
+  color:black;
+  font-weight:bold;
+}
+
+#holdingTable {
+  margin-left:auto;
+  margin-right:auto;
+  margin-top:auto;
+  margin-bottom:10px;
+  border-collapse:collapse;
+  color:grey;
+}
+
+#holdingTable th {
+  color:green;
+}
+
+#holdingTable td {
+  border:1px solid black;
+  padding:3px;
+}
+
+#holdingTable td:hover {
+  color:Green;
+  cursor:pointer;
+  text-decoration:underline;
+}
+
+.holdingTitle {
+  display:inline-block;
+  margin-top:5px;
+}
+
+.buttonArea {
+  padding-top:5px;
+  padding-bottom:10px;
+}
+
+.textButton:hover {
+  text-decoration:underline;
+}
+
+.textButton {
+  border:none;
+  border-radius:25px;
+  background-color:white;
+  color:green;
+  font-weight:bold;
+  margin:0;
+  padding:0;
+  cursor:pointer;
+  outline:none;
+}
+
+.navArea {
+  margin-top:20px;
+}
+
+.navButtonHere {
+  border:1px solid LightGrey;
+  border-bottom:none;
+  background-color:LightGrey;
+  color:green;
+  font-weight:bold;
+  margin:0;
+  padding:15;
+  cursor:pointer;
+  outline:none;
+}
+
+.navButtonHere:hover {
+  text-decoration:underline;
+}
+
+.navButton {
+  border:1px solid LightGrey;
+  border-bottom:none;
+  background-color:white;
+  color:green;
+  font-weight:bold;
+  margin:0;
+  padding:15;
+  cursor:pointer;
+  outline:none;
+}
+
+.navButton:hover {
+  text-decoration:underline;
+}
+
+.textButton:hover {
+  text-decoration:underline;
+}
